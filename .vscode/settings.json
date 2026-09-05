@@ -1,0 +1,10 @@
+{
+    "Lua.diagnostics.globals": [
+        "minetest",
+        "DIR_DELIM",
+        "default",
+        "mana",
+        "technic",
+        "magical_magnet"
+    ]
+}
