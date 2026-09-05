@@ -100,6 +100,7 @@ local function change_description_part(player, desc_part, val, intermediate_mode
         player:set_wielded_item(stack)
     end
 end
+magical_magnet.change_description_part = change_description_part
 
 local function update_description_blacklist(player, stack, meta)
     local blakclist = {}
@@ -196,10 +197,11 @@ local function show_magnet_iu(player)
     minetest.show_formspec(player_name, "magical_magnet:config_form", formspec)
 end
 
-local base_def = {
-    groups = { tool = 1 },
-    on_secondary_use = function(itemstack, player, pointed_thing)
+local function handle_magnet_use(itemstack, player, pointed_thing)
         if not player or not player:is_player() then return end
+
+        -- Magnet Settings work only if magnet is charged
+        if itemstack:get_wear() == 65535 then return end
 
         local meta = itemstack:get_meta()
         local magnet_radius = meta:get_int("magnet_radius")
@@ -274,7 +276,12 @@ local base_def = {
 
         show_magnet_iu(player)
         return itemstack
-    end,
+end
+
+local base_def = {
+    groups = { tool = 1 },
+    on_place = handle_magnet_use,
+    on_secondary_use = handle_magnet_use,
 }
 
 local off_def = merge(base_def, {
