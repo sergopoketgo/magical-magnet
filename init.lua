@@ -44,7 +44,7 @@ minetest.register_on_mods_loaded(function()
                 local current_mana = mana.get(player_name) or 0
 
                 if current_mana < mana_cost then
-                    minetest.chat_send_player(player_name, "Not enough mana! You need: " .. mana_cost)
+                    minetest.chat_send_player(player_name, minetest.get_color_escape_sequence("#FF8800") .. "Недостаточно маны. Требуется: " .. mana_cost .. " единиц маны.")
                     return
                 else
                     mana.subtract(player_name, mana_cost)
