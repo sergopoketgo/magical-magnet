@@ -227,7 +227,7 @@ local function handle_magnet_use(itemstack, player, pointed_thing)
 
                 -- minetest.log(dump(wielded_item:get_meta():to_table()))
 
-                return 0  -- отключаем обычное поведение
+                return 0  -- Disable the default behavior
             end,
 
             allow_take = function(inv, listname, index, stack, player)
