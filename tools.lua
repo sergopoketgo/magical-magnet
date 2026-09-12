@@ -131,7 +131,7 @@ local function show_magnet_iu(player)
 
     local formspec = ""
 
-    -- Проверяем магнит зависимый или нет
+    -- Check if magnet is main or dependent
     local show_full_formspec = false
     if wielded_magnet:get_name() == "magical_magnet:magnet_off" then
         show_full_formspec = true
@@ -147,7 +147,7 @@ local function show_magnet_iu(player)
         end
     end
 
-    -- Задаем соответствующие окошки для зависимого или главного магнита
+    -- Set the appropriate windows for the dependent or main magnet
     if show_full_formspec then
         formspec = "size[8,6.8]" ..
             "style_type[button;bgcolor=#2d223c;textcolor=#00ffff;border=true;content_offset=0]" ..
@@ -192,7 +192,7 @@ local function show_magnet_iu(player)
             "listring[detached:magnet_filter_" .. player_name .. ";main]" ..
             "listring[current_player;main]"
     end
-    
+
 
     minetest.show_formspec(player_name, "magical_magnet:config_form", formspec)
 end
@@ -206,7 +206,7 @@ local function handle_magnet_use(itemstack, player, pointed_thing)
         local meta = itemstack:get_meta()
         local magnet_radius = meta:get_int("magnet_radius")
         if magnet_radius == 0 then
-            meta:set_int("magnet_radius", 3) -- мета является не заданой в случае выдачи выкл./вкл. магнита через креатив
+            meta:set_int("magnet_radius", 3) -- Meta is not defined in the case of magnet on/off give via Creative
         end
 
         local player_name = player:get_player_name()
@@ -264,7 +264,7 @@ local function handle_magnet_use(itemstack, player, pointed_thing)
         })
         filter_inv:set_size("main", 8)
 
-        -- Загружаем сохраненные слоты черного списка из метаданных магнита
+        -- Load the saved blacklist stacks from the magnet's metadata
         local wielded_item = player:get_wielded_item()
         local wielded_meta = wielded_item:get_meta()
         for index = 1, 8 do
