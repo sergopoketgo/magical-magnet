@@ -151,7 +151,7 @@ minetest.register_globalstep(function(dtime)
 
                         inv:set_stack("main", index, stack)
 
-                        minetest.chat_send_player(player_name, minetest.get_color_escape_sequence("#FF8800") .. "Магнит разряжен! Зарядите его с помощью книги гравитации.")
+                        minetest.chat_send_player(player_name, minetest.get_color_escape_sequence("#FF8800") .. "Магнит разряжен! Чтобы зарядить его, выбросьте магнит на землю и нажмите ПКМ по валяющемуся на земле магните держа в руках Tome Of Gravity и имея 100 ОМ.")
                     else
                         -- Spend wear while using
                         stack:add_wear(wear_per_tick)

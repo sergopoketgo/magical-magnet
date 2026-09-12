@@ -162,7 +162,10 @@ local function show_magnet_iu(player)
             "button[5.44,0;1,1;radius_minus;-]" ..
             "button[6.22,0;1,1;radius_plus;+]" ..
             "button[7,0;1,1;radius_maximum;Max]" ..
-            "label[0,0.9;Черный список:]" ..
+
+            "image[0,0.9;.5,.5;info.png]" ..
+            "tooltip[0,0.9;.5,.5;Используйте 2 и более магнитов одновременно,\nчтобы расширить черный список.]" ..
+            "label[.5,0.875;Черный список:]" ..
 
             "listring[detached:magnet_filter_" .. player_name .. ";main]" ..
             "listring[current_player;main]"
@@ -179,7 +182,7 @@ local function show_magnet_iu(player)
 
             -----
             "image[0,.82;.5,.5;info.png]" ..
-            "tooltip[0,.82;.5,.5;Радиус действителен только у первого по счету магнита\nв вашем инвентаре, но благодаря зависимым магнитам вы\nможете добавлять дополнительные слоты для фильтра.]" ..
+            "tooltip[0,.82;.5,.5;Радиус действителен только у первого по счету\nмагнита в вашем инвентаре.]" ..
             "label[.5,.8;" .. minetest.colorize("#888888", "Этот магнит зависимый. Изменение радиуса недоступно") .. "]" ..
             -----
 
@@ -199,9 +202,13 @@ end
 
 local function handle_magnet_use(itemstack, player, pointed_thing)
         if not player or not player:is_player() then return end
+        local player_name = player:get_player_name()
 
         -- Magnet Settings work only if magnet is charged
-        if itemstack:get_wear() == 65535 then return end
+        if itemstack:get_wear() == 65535 then
+            minetest.chat_send_player(player_name, minetest.get_color_escape_sequence("#FF8800") .. "Магнит разряжен! Чтобы зарядить его, выбросьте магнит на землю и нажмите ПКМ по валяющемуся на земле магните держа в руках Tome Of Gravity и имея 100 ОМ.")
+            return
+        end
 
         local meta = itemstack:get_meta()
         local magnet_radius = meta:get_int("magnet_radius")
@@ -209,7 +216,6 @@ local function handle_magnet_use(itemstack, player, pointed_thing)
             meta:set_int("magnet_radius", 3) -- Meta is not defined in the case of magnet on/off give via Creative
         end
 
-        local player_name = player:get_player_name()
         local filter_inv = minetest.create_detached_inventory("magnet_filter_" .. player_name, {
             allow_put = function(inv, listname, index, stack, player)
                 local item_copy = ItemStack(stack)
@@ -226,7 +232,6 @@ local function handle_magnet_use(itemstack, player, pointed_thing)
                 update_description_blacklist(player, wielded_item, wielded_item_meta)
 
                 -- minetest.log(dump(wielded_item:get_meta():to_table()))
-
                 return 0  -- Disable the default behavior
             end,
 
