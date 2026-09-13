@@ -5,7 +5,7 @@ magical_magnet = {}
 minetest.register_on_joinplayer(function(player)
     -- If the player leaves, the variable continues to contain this player's data until the server is shut down
     local player_name = player:get_player_name()
-    
+
     magical_magnet[player_name] = {
         magnet_radius = 3,
         blacklist = {}
@@ -20,6 +20,9 @@ dofile(magical_magnet_path.."/tools.lua")
 dofile(magical_magnet_path.."/nodes.lua")
 dofile(magical_magnet_path.."/crafting.lua")
 dofile(magical_magnet_path.."/mapgen.lua")
+
+-- Add Translator
+local S = minetest.get_translator("magical_magnet")
 
 
 -- Checking the Right-Click on Builtin Items
@@ -39,15 +42,14 @@ minetest.register_on_mods_loaded(function()
             local find_gravity_core = self.itemstring:find("magical_magnet:inert_gravity_core")
             local find_magnet = self.itemstring:find("magical_magnet:magnet_off") or self.itemstring:find("magical_magnet:magnet_on")
             if self.itemstring and (find_gravity_core or find_magnet) then
-                local mana_cost = 100
                 local player_name = player:get_player_name()
                 local current_mana = mana.get(player_name) or 0
 
-                if current_mana < mana_cost then
-                    minetest.chat_send_player(player_name, minetest.get_color_escape_sequence("#FF8800") .. "Недостаточно маны. Требуется: " .. mana_cost .. " единиц маны.")
+                if current_mana < 100 then
+                    minetest.chat_send_player(player_name, minetest.get_color_escape_sequence("#FF8800") .. S("Not enough mana. Required: 100 mana."))
                     return
                 else
-                    mana.subtract(player_name, mana_cost)
+                    mana.subtract(player_name, 100)
                 end
 
                 local wear_cost = 1092.25
@@ -68,14 +70,10 @@ minetest.register_on_mods_loaded(function()
                 minetest.sound_play("magical_magnet_charging", { pos = pos, gain = 1.0 })
 
                 if find_gravity_core then
-                    if self.set_item then
-                        self:set_item("magical_magnet:charged_gravity_core")
-                    else
-                        self.itemstring = "magical_magnet:charged_gravity_core"
-                        self.object:set_properties({
-                            textures = { "magical_magnet_charged_gravity_core.png" },
-                        })
-                    end
+                    local stack = ItemStack("magical_magnet:charged_gravity_core")
+                    local meta = stack:get_meta()
+                    meta:set_string("description", S("Gravity Core (active)"))
+                    self:set_item(stack:to_string())
                 elseif find_magnet then
                     local stack = ItemStack(self.itemstring)
                     stack:set_wear(0)
@@ -151,7 +149,7 @@ minetest.register_globalstep(function(dtime)
 
                         inv:set_stack("main", index, stack)
 
-                        minetest.chat_send_player(player_name, minetest.get_color_escape_sequence("#FF8800") .. "Магнит разряжен! Чтобы зарядить его, выбросьте магнит на землю и нажмите ПКМ по валяющемуся на земле магните держа в руках Tome Of Gravity и имея 100 ОМ.")
+                        minetest.chat_send_player(player_name, minetest.get_color_escape_sequence("#FF8800") .. S("The magnet is discharged! To charge it, drop the magnet on the ground and right-click on the magnet lying on the ground while holding the Tome of Gravity and having 100 mana."))
                     else
                         -- Spend wear while using
                         stack:add_wear(wear_per_tick)
@@ -200,7 +198,7 @@ minetest.register_globalstep(function(dtime)
 
         ::continue::
     end
-    
+
     if timer >= 2 then
         timer = 0
         -- minetest.log(dump(magical_magnet))

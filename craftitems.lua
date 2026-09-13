@@ -1,21 +1,25 @@
+-- Add Translator
+local S = minetest.get_translator("magical_magnet")
+
+
 minetest.register_craftitem("magical_magnet:barite", {
-	description = "Барит",
+	description = S("Barite"),
 	inventory_image = "magical_magnet_barite.png",
 })
 
 minetest.register_craftitem("magical_magnet:magnet_ingot", {
-	description = "Магнитный слиток",
+	description = S("Magnetic Ingot"),
     inventory_image = "magical_magnet_magnet_ingot.png",
 })
 
 minetest.register_craftitem("magical_magnet:inert_gravity_core", {
-	description = "Гравитационное ядро (неакт.)",
+	description = S("Gravity Core (inactive)"),
 	inventory_image = "magical_magnet_inert_gravity_core.png",
 
 })
 
 minetest.register_craftitem("magical_magnet:charged_gravity_core", {
-	description = "Гравитационное ядро (акт.)",
+	description = S("Gravity Core (inactive)"),
     inventory_image = "magical_magnet_charged_gravity_core.png",
     groups = { not_in_creative_inventory = 1 },
 	light_source = 14,

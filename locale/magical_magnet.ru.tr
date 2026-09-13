@@ -1,0 +1,22 @@
+# textdomain: magical_magnet
+Barite=Барит
+Magnetic Ingot=Магнитный слиток
+Gravity Core (inactive)=Гравитационное ядро (неакт.)
+Gravity Core (active)=Гравитационное ядро (акт.)
+Not enough mana. Required: 100 mana.=Недостаточно маны. Требуется: 100 единиц маны.
+The magnet is discharged! To charge it, drop the magnet on the ground and right-click on the magnet lying on the ground while holding the Tome of Gravity and having 100 mana.=Магнит разряжен! Чтобы зарядить его, выбросьте магнит на землю и нажмите ПКМ по валяющемуся на земле магните держа в руках Tome Of Gravity и имея 100 единиц маны.
+Barite Ore=Баритовая руда
+blocks=блока(ов)
+(empty)=(пусто)
+On=Вкл.
+Off=Выкл.
+Magnet (@1)=Магнит (@1)
+Range:=Радиус действия:
+Blacklisted items:=Предметы в черном списке:
+Magnet radius:=Радиус магнита:
+Min=Мин.
+Max=Макс.
+Use two or more magnets at the same time to@nexpand the blacklist.=Используйте 2 и более магнитов одновременно,@nчтобы расширить черный список.
+Blacklist:=Черный список:
+The radius applies only to the first magnet in your inventory.=Радиус действителен только у первого по счету@nмагнита в вашем инвентаре.
+This magnet is dependent. You cannot change the radius.=Этот магнит зависимый. Изменение радиуса недоступно.

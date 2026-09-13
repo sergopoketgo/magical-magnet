@@ -2,3 +2,4 @@
 /.vscode
 /textures/backup
 .luacheckrc
+/locale/template.txt

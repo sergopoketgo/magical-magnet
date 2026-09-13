@@ -55,10 +55,3 @@ minetest.register_on_craft(function(itemstack, player, old_craft_grid, craft_inv
     end
     return itemstack
 end)
-
---inv:set_stack("main", index, stack)
---technic.register_grinder_recipe({
---    input = {"magical_magnet:barite"},
---    output = "magical_magnet:barite_dust",
---    time = 3,
---})
