@@ -116,11 +116,12 @@ minetest.register_globalstep(function(dtime)
                     -- Copy meta magnet radius to local variable and break loop
                     local meta_magnet_radius = stack:get_meta():get_int("magnet_radius")
                     magical_magnet[player_name].magnet_radius = meta_magnet_radius
+
+                    -- Clear Blacklist
+                    magical_magnet[player_name].blacklist = {}
                     break
                 end
             end
-
-            magical_magnet[player_name].blacklist = {}
         end
 
         for index, stack in ipairs(inv_list) do
