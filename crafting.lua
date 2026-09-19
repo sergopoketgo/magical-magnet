@@ -9,29 +9,21 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-    output = "magical_magnet:magnet_off",
+    output = "magical_magnet:magnet_off 1 65535",
     recipe = {
         {"magical_magnet:magnet_ingot", "magical_magnet:gravity_core_uncharged", "magical_magnet:magnet_ingot"},
         {"magical_magnet:magnet_ingot", "", "magical_magnet:magnet_ingot"},
         {"magical_magnet:magnet_ingot", "", "magical_magnet:magnet_ingot"},
-    },
-    on_craft = function(itemstack, player, old_craft_grid, craft_inv)
-        itemstack:get_meta():set_int("magnet_radius", 3)
-        return itemstack
-    end,
+    }
 })
 
 minetest.register_craft({
-    output = "magical_magnet:magnet_on",
+    output = "magical_magnet:magnet_off",
     recipe = {
         {"magical_magnet:magnet_ingot", "magical_magnet:gravity_core_charged", "magical_magnet:magnet_ingot"},
         {"magical_magnet:magnet_ingot", "", "magical_magnet:magnet_ingot"},
         {"magical_magnet:magnet_ingot", "", "magical_magnet:magnet_ingot"},
-    },
-    on_craft = function(itemstack, player, old_craft_grid, craft_inv)
-        itemstack:get_meta():set_int("magnet_radius", 3)
-        return itemstack
-    end,
+    }
 })
 
 -- Technic Craft Recipes
@@ -46,12 +38,11 @@ technic.register_alloy_recipe({
 
 
 minetest.register_on_craft(function(itemstack, player, old_craft_grid, craft_inv)
-    if itemstack:get_name() == "magical_magnet:magnet_off" or itemstack:get_name() == "magical_magnet:magnet_on" then
+    if itemstack:get_name() == "magical_magnet:magnet_off" then
         local meta = itemstack:get_meta()
-        meta:set_int("magnet_radius", 3)
-        if itemstack:get_name() == "magical_magnet:magnet_off" then
-            itemstack:set_wear(65535)
-        end
+        meta:set_int("magnet_radius", 3)  -- If you give yourself magnet_on, "magnet_radius" won't be set anyway
     end
     return itemstack
 end)
+
+-- /giveme magical_magnet:magnet_off
