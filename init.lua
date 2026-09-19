@@ -1,12 +1,14 @@
 -- Declaration of a Global Variable of this mode
-magical_magnet = {}
+magical_magnet = {
+    player_data = {}
+}
 
 -- Write Information about Players to the Mode Variable
 minetest.register_on_joinplayer(function(player)
     -- If the player leaves, the variable continues to contain this player's data until the server is shut down
     local player_name = player:get_player_name()
 
-    magical_magnet[player_name] = {
+    magical_magnet.player_data[player_name] = {
         magnet_radius = 3,
         blacklist = {}
     }
@@ -102,7 +104,8 @@ local timer = 0
 minetest.register_globalstep(function(dtime)
     timer = timer + dtime
 
-    for _, player in ipairs(minetest.get_connected_players()) do
+    local connected_players = minetest.get_connected_players()
+    for _, player in ipairs(connected_players) do
         local player_name = player:get_player_name()
         local inv = player:get_inventory()
         if not inv then goto continue end
@@ -115,10 +118,10 @@ minetest.register_globalstep(function(dtime)
 
                     -- Copy meta magnet radius to local variable and break loop
                     local meta_magnet_radius = stack:get_meta():get_int("magnet_radius")
-                    magical_magnet[player_name].magnet_radius = meta_magnet_radius
+                    magical_magnet.player_data[player_name].magnet_radius = meta_magnet_radius
 
                     -- Clear Blacklist
-                    magical_magnet[player_name].blacklist = {}
+                    magical_magnet.player_data[player_name].blacklist = {}
                     break
                 end
             end
@@ -134,7 +137,7 @@ minetest.register_globalstep(function(dtime)
                     for index = 1, 8 do
                         local blacklist_item = magnet_meta:get_string("magnet_stack_" .. index)
                         if blacklist_item ~= "" then
-                            table.insert(magical_magnet[player_name].blacklist, blacklist_item)
+                            table.insert(magical_magnet.player_data[player_name].blacklist, blacklist_item)
                         end
                     end
 
@@ -157,6 +160,8 @@ minetest.register_globalstep(function(dtime)
                         inv:set_stack("main", index, stack)
                     end
                 end
+                
+                -- minetest.log(dump(magical_magnet.player_data))
             end
 
             -- HIGH PRIORITY ACTIONS
@@ -164,7 +169,7 @@ minetest.register_globalstep(function(dtime)
                 local player_pos = player:get_pos()
                 local player_center = { x = player_pos.x, y = player_pos.y + 1.5, z = player_pos.z }
 
-                local magnet_radius = magical_magnet[player_name].magnet_radius
+                local magnet_radius = magical_magnet.player_data[player_name].magnet_radius
                 local objects = minetest.get_objects_inside_radius(player_center, magnet_radius)
 
                 for _, obj in ipairs(objects) do
@@ -173,7 +178,7 @@ minetest.register_globalstep(function(dtime)
                     if entity and entity.name == "__builtin:item" then
                         local item_name = ItemStack(entity.itemstring):get_name()
                         local is_object_ignored = false
-                        for _, blacklist_el in ipairs(magical_magnet[player_name].blacklist) do
+                        for _, blacklist_el in ipairs(magical_magnet.player_data[player_name].blacklist) do
                             if blacklist_el == item_name then
                                 is_object_ignored = true
                                 break
@@ -184,12 +189,36 @@ minetest.register_globalstep(function(dtime)
                             local obj_pos = obj:get_pos()
                             local distance = vector.distance(obj_pos, player_center)  -- Getting distance between player and dropped item
 
-                            if distance <= pick_up_distance then
-                                entity:on_punch(player)
-                            else
-                                -- Move dropped item to player
-                                local dir = vector.direction(obj_pos, player_center)
-                                obj:set_velocity(vector.multiply(dir, 6))
+                            local player_pickuper = nil
+                            local last_distance = nil
+                            for _, _player in ipairs(connected_players) do
+                                local _player_name = _player:get_player_name()
+
+                                local _player_pos = _player:get_pos()
+                                local _player_center = { x = _player_pos.x, y = _player_pos.y + 1.5, z = _player_pos.z }
+                                local _distance = vector.distance(obj_pos, _player_center)
+
+                                local _player_inv = _player:get_inventory()
+                                local _player_has_magnet_on = _player_inv and _player_inv:contains_item("main", "magical_magnet:magnet_on")
+                                local _player_magnet_radius = magical_magnet.player_data[_player_name].magnet_radius
+
+                                if _player_has_magnet_on and _distance <= _player_magnet_radius then
+                                    if not player_pickuper or _distance < last_distance then
+                                        player_pickuper = _player
+                                        last_distance = _distance
+                                    end
+                                end
+                            end
+                            -- minetest.log(dump(player_pickuper and player_pickuper:get_player_name() or "no player"))
+
+                            if player == player_pickuper then
+                                if distance <= pick_up_distance then
+                                    entity:on_punch(player)
+                                else
+                                    -- Move dropped item to player
+                                    local dir = vector.direction(obj_pos, player_center)
+                                    obj:set_velocity(vector.multiply(dir, 6))
+                                end
                             end
                         end
                     end
