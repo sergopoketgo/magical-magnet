@@ -1,8 +1,8 @@
 # textdomain: magical_magnet
 Barite=Барит
 Magnetic Ingot=Магнитный слиток
-Gravity Core (inactive)=Гравитационное ядро (неакт.)
-Gravity Core (active)=Гравитационное ядро (акт.)
+Gravity Core=Гравитационное ядро
+Gravity Core (charged)=Гравитационное ядро (заряженное)
 Not enough mana. Required: 100 mana.=Недостаточно маны. Требуется: 100 единиц маны.
 The magnet is discharged! To charge it, drop the magnet on the ground and right-click on the magnet lying on the ground while holding the Tome of Gravity and having 100 mana.=Магнит разряжен! Чтобы зарядить его, выбросьте магнит на землю и нажмите ПКМ по валяющемуся на земле магните держа в руках Tome Of Gravity и имея 100 единиц маны.
 Barite Ore=Баритовая руда

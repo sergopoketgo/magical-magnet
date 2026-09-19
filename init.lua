@@ -41,7 +41,7 @@ minetest.register_on_mods_loaded(function()
         local wielded_item = player:get_wielded_item()
         if wielded_item and wielded_item:get_name() == "gadgets_magic:tome_gravity" then
 
-            local find_gravity_core = self.itemstring:find("magical_magnet:inert_gravity_core")
+            local find_gravity_core = self.itemstring:find("magical_magnet:gravity_core_uncharged")
             local find_magnet = self.itemstring:find("magical_magnet:magnet_off") or self.itemstring:find("magical_magnet:magnet_on")
             if self.itemstring and (find_gravity_core or find_magnet) then
                 local player_name = player:get_player_name()
@@ -66,15 +66,15 @@ minetest.register_on_mods_loaded(function()
                     minvel = {x=-1, y=1, z=-1}, maxvel = {x=1, y=3, z=1},
                     minexptime = 0.5, maxexptime = 1,
                     minsize = 1, maxsize = 2,
-                    texture = "thunder.png",
+                    texture = "thunder_particle.png",
                 })
 
                 minetest.sound_play("magical_magnet_charging", { pos = pos, gain = 1.0 })
 
                 if find_gravity_core then
-                    local stack = ItemStack("magical_magnet:charged_gravity_core")
+                    local stack = ItemStack("magical_magnet:gravity_core_charged")
                     local meta = stack:get_meta()
-                    meta:set_string("description", S("Gravity Core (active)"))
+                    meta:set_string("description", S("Gravity Core (charged)"))
                     self:set_item(stack:to_string())
                 elseif find_magnet then
                     local stack = ItemStack(self.itemstring)

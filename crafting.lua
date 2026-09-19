@@ -1,6 +1,6 @@
 -- Common Craft Recipes
 minetest.register_craft({
-    output = "magical_magnet:inert_gravity_core",
+    output = "magical_magnet:gravity_core_uncharged",
     recipe = {
         {"stardust:stardust", "basic_materials:energy_crystal_simple", "stardust:stardust"},
         {"magical_magnet:magnet_ingot", "magic_materials:void_rune", "magical_magnet:magnet_ingot"},
@@ -11,7 +11,7 @@ minetest.register_craft({
 minetest.register_craft({
     output = "magical_magnet:magnet_off",
     recipe = {
-        {"magical_magnet:magnet_ingot", "magical_magnet:inert_gravity_core", "magical_magnet:magnet_ingot"},
+        {"magical_magnet:magnet_ingot", "magical_magnet:gravity_core_uncharged", "magical_magnet:magnet_ingot"},
         {"magical_magnet:magnet_ingot", "", "magical_magnet:magnet_ingot"},
         {"magical_magnet:magnet_ingot", "", "magical_magnet:magnet_ingot"},
     },
@@ -24,7 +24,7 @@ minetest.register_craft({
 minetest.register_craft({
     output = "magical_magnet:magnet_on",
     recipe = {
-        {"magical_magnet:magnet_ingot", "magical_magnet:charged_gravity_core", "magical_magnet:magnet_ingot"},
+        {"magical_magnet:magnet_ingot", "magical_magnet:gravity_core_charged", "magical_magnet:magnet_ingot"},
         {"magical_magnet:magnet_ingot", "", "magical_magnet:magnet_ingot"},
         {"magical_magnet:magnet_ingot", "", "magical_magnet:magnet_ingot"},
     },

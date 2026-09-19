@@ -149,7 +149,7 @@ local function show_magnet_ui(player)
         formspec = "size[8,6.8]" ..
             "style_type[button;bgcolor=#2d223c;textcolor=#00ffff;border=true;content_offset=0]" ..
             "style_type[button:hover;bgcolor=#44305c;textcolor=#ffffff]" ..
-            "background[0,0;8,6.8;magnet_bg.png;true]" ..
+            "background[0,0;8,6.8;magnet_ui_bg.png;true]" ..
 
             "list[current_player;main;0,2.8;8,4;]" ..
             "list[detached:magnet_filter_" .. player_name .. ";main;0,1.48;8,1;0]" ..
@@ -160,7 +160,7 @@ local function show_magnet_ui(player)
             "button[6.22,0;1,1;radius_plus;+]" ..
             "button[7,0;1,1;radius_maximum;" .. F(S("Max")).. "]" ..
 
-            "image[0,0.9;.5,.5;info.png]" ..
+            "image[0,0.9;.5,.5;magnet_ui_tooltip.png]" ..
             "tooltip[0,0.9;.5,.5;" .. F(S("Use two or more magnets at the same time to@nexpand the blacklist.")) .. "]" ..
             "label[.5,0.875;" .. F(S("Blacklist:")) .. "]" ..
 
@@ -170,7 +170,7 @@ local function show_magnet_ui(player)
         formspec = "size[8,7.4]" ..
             "style_type[button;bgcolor=#3a3a3a;textcolor=#888888;border=true;content_offset=0]" ..
             "style_type[button:hover;bgcolor=#3a3a3a;textcolor=#888888]" ..
-            "background[0,0;8,7.4;magnet_bg.png;true]" ..
+            "background[0,0;8,7.4;magnet_ui_bg.png;true]" ..
 
             "list[current_player;main;0,3.4;8,4;]" ..
             "list[detached:magnet_filter_" .. player_name .. ";main;0,2.08;8,1;0]" ..
@@ -178,7 +178,7 @@ local function show_magnet_ui(player)
             "label[0,.2;" .. minetest.colorize("#888888", F(S("Magnet radius:")) .. " " .. magnet_radius .. " " .. F(S("blocks"))) .. "]" ..
 
             -----
-            "image[0,.82;.5,.5;info.png]" ..
+            "image[0,.82;.5,.5;magnet_ui_tooltip.png]" ..
             "tooltip[0,.82;.5,.5;" .. F(S("The radius applies only to the first magnet in your inventory.")) .. "]" ..
             "label[.5,.8;" .. minetest.colorize("#888888", F(S("This magnet is dependent. You cannot change the radius."))) .. "]" ..
             -----

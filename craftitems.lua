@@ -12,15 +12,15 @@ minetest.register_craftitem("magical_magnet:magnet_ingot", {
     inventory_image = "magical_magnet_magnet_ingot.png",
 })
 
-minetest.register_craftitem("magical_magnet:inert_gravity_core", {
-	description = S("Gravity Core (inactive)"),
-	inventory_image = "magical_magnet_inert_gravity_core.png",
+minetest.register_craftitem("magical_magnet:gravity_core_uncharged", {
+	description = S("Gravity Core"),
+	inventory_image = "magical_magnet_gravity_core_uncharged.png",
 
 })
 
-minetest.register_craftitem("magical_magnet:charged_gravity_core", {
-	description = S("Gravity Core (inactive)"),
-    inventory_image = "magical_magnet_charged_gravity_core.png",
+minetest.register_craftitem("magical_magnet:gravity_core_charged", {
+	description = S("Gravity Core (charged)"),
+    inventory_image = "magical_magnet_gravity_core_charged.png",
     groups = { not_in_creative_inventory = 1 },
 	light_source = 14,
 })
