@@ -11,18 +11,18 @@ minetest.register_craft({
 minetest.register_craft({
     output = "magical_magnet:magnet_off 1 65535",
     recipe = {
+        {"magical_magnet:magnet_ingot", "", "magical_magnet:magnet_ingot"},
+        {"magical_magnet:magnet_ingot", "", "magical_magnet:magnet_ingot"},
         {"magical_magnet:magnet_ingot", "magical_magnet:gravity_core_uncharged", "magical_magnet:magnet_ingot"},
-        {"magical_magnet:magnet_ingot", "", "magical_magnet:magnet_ingot"},
-        {"magical_magnet:magnet_ingot", "", "magical_magnet:magnet_ingot"},
     }
 })
 
 minetest.register_craft({
     output = "magical_magnet:magnet_off",
     recipe = {
+        {"magical_magnet:magnet_ingot", "", "magical_magnet:magnet_ingot"},
+        {"magical_magnet:magnet_ingot", "", "magical_magnet:magnet_ingot"},
         {"magical_magnet:magnet_ingot", "magical_magnet:gravity_core_charged", "magical_magnet:magnet_ingot"},
-        {"magical_magnet:magnet_ingot", "", "magical_magnet:magnet_ingot"},
-        {"magical_magnet:magnet_ingot", "", "magical_magnet:magnet_ingot"},
     }
 })
 
