@@ -32,7 +32,7 @@ technic.register_alloy_recipe({
         "magical_magnet:barite",
         "default:steel_ingot"
     },
-    output = "magical_magnet:magnet_ingot",
+    output = "magical_magnet:magnet_ingot 2",
     time = 4,
 })
 
