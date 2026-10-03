@@ -15,3 +15,14 @@ Magical Magnet is a utility mod for Luanti that adds a magical pickup magnet for
 - You can view all of the magnet's settings in your inventory by hovering your cursor over the item.
 - The magnet glows if you add the ```wielded_light``` mod
 - Works correctly with multiple players who are nearby
+
+## Where is Barite Ore located?
+
+- Barite Ore is found in sandstone at altitudes from -255 to 0
+- It's best to look for it in the desert
+- At an altitude of -255 in the desert, sandstone ends and stone begins, so you don't need to know your exact altitude
+- At altitudes from -255 to -64, the chance of finding Barite Ore is higher
+
+## Mod compatibility
+
+This mod was developed for the game ```Yams RPG```. You can install it as an add-on for other games, but if you're playing without magic, I don't recommend doing so because this mod has a lot of dependencies.
