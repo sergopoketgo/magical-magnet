@@ -25,4 +25,4 @@ Magical Magnet is a utility mod for Luanti that adds a magical pickup magnet for
 
 ## Mod compatibility
 
-This mod was developed for the game ```Yams RPG```. You can install it as an add-on for other games, but if you're playing without magic, I don't recommend doing so because this mod has a lot of dependencies.
+This mod was developed for the game ```Yams RPG```. You can install it as an add-on for other games, but if you're playing without magical mods, I don't recommend doing so because this mod has a lot of dependencies.
