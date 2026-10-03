@@ -147,9 +147,7 @@ local function show_magnet_ui(player)
     local formspec = ""
     if show_full_formspec then
         formspec = "size[8,6.8]" ..
-            "style_type[button;bgcolor=#2d223c;textcolor=#00ffff;border=true;content_offset=0]" ..
-            "style_type[button:hover;bgcolor=#44305c;textcolor=#ffffff]" ..
-            "background[0,0;8,6.8;magnet_ui_bg.png;true]" ..
+            "style_type[button;textcolor=#00ffff;border=true;content_offset=0]" ..
 
             "list[current_player;main;0,2.8;8,4;]" ..
             "list[detached:magnet_filter_" .. player_name .. ";main;0,1.48;8,1;0]" ..
@@ -168,9 +166,7 @@ local function show_magnet_ui(player)
             "listring[current_player;main]"
     else
         formspec = "size[8,7.4]" ..
-            "style_type[button;bgcolor=#3a3a3a;textcolor=#888888;border=true;content_offset=0]" ..
-            "style_type[button:hover;bgcolor=#3a3a3a;textcolor=#888888]" ..
-            "background[0,0;8,7.4;magnet_ui_bg.png;true]" ..
+            "style_type[button;textcolor=#888888;border=true;content_offset=0]" ..
 
             "list[current_player;main;0,3.4;8,4;]" ..
             "list[detached:magnet_filter_" .. player_name .. ";main;0,2.08;8,1;0]" ..
