@@ -13,7 +13,7 @@ Magical Magnet is a utility mod for Luanti that adds a magnet that pulls dropped
 - Charging a Magnet with a Magic Spell
 - The magnet has an "on" and "off" state, and for it to work, the player only needs to have an "on" magnet in their inventory (it doesn't matter exactly where it is).
 - You can view all of the magnet's settings in your inventory by hovering your cursor over the item.
-- The magnet glows if you add the ```wielded_light``` mod
+- The magnet glows if you add the [Wielded Light](https://content.luanti.org/packages/bell07/wielded_light/) mod
 - Works correctly with multiple players who are nearby
 
 ## Where is Barite Ore located?
@@ -25,4 +25,4 @@ Magical Magnet is a utility mod for Luanti that adds a magnet that pulls dropped
 
 ## Mod compatibility
 
-This mod was developed for the game ```Yams RPG```. You can install it as an add-on for other games, but if you're playing without magical mods, I don't recommend doing so because this mod has a lot of dependencies.
+This mod was developed for the game [yams RPG](https://content.luanti.org/packages/jara25/yams/). You can install it as an add-on for other games, but if you're playing without magical mods, I don't recommend doing so because this mod has a lot of dependencies.
