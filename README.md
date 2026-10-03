@@ -1,6 +1,6 @@
 # Magical Magnet
 
-Magical Magnet is a utility mod for Luanti that adds a magical pickup magnet for dropped items. It allows players to automatically collect nearby items, configure the pickup radius and block certain item types.
+Magical Magnet is a utility mod for Luanti that adds a magnet that pulls dropped items toward the player. It allows players to automatically collect nearby items, adjust the collection radius, and ignore certain items.
 
 ## Features
 
